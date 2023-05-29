@@ -1,17 +1,17 @@
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { inputText } from "../redux/action";
 const Title = (props) => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const valueText = useSelector(state => {
-        const {inputReducer} = state
-        return inputReducer.text
-    })
+  const valueText = useSelector((state) => {
+    const { inputReducer } = state;
+    return inputReducer.text;
+  });
 
-    const hendleChange = (event) => {
-        dispatch(inputText(event.target.value))
-    }
+  const hendleChange = (event) => {
+    dispatch(inputText(event.target.value));
+  };
   return (
     <div className="card-title">
       <div className="card-title-top">
