@@ -1,7 +1,7 @@
 import React from "react";
 import SingelComment from "./SingelComment";
-import { useState, useEffect } from "react";
-import { commentCreate, commentsLoad } from "../redux/action";
+import { useState } from "react";
+import { commentCreate } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import uniqid from "uniqid";
 const Comments = (props) => {
@@ -17,16 +17,33 @@ const Comments = (props) => {
   };
 
   const hendleSubmit = (event) => {
-    event.preventDefault(); // при нажатии на enter не перезагружаем стр
+    event.preventDefault();
+
     const id = uniqid();
-    dispatch(commentCreate(textComment, id));
-    setTextComment("");
+    const badWords = ["дурак", "придурок"];
+    function isBadWords(arr, val) {
+      return arr.some((arrVal) => val === arrVal);
+    }
+
+    if (document.getElementById("inp").value === "") {
+      alert("Введите комментарий");
+    } else if (isBadWords(badWords, document.getElementById("inp").value)) {
+      alert("не ругайся");
+    } else if (document.getElementById("inp").value !== "") {
+      dispatch(commentCreate(textComment, id));
+      setTextComment("");
+    }
   };
 
   return (
     <div className="card-comments">
       <form onSubmit={hendleSubmit} oaction="" className="comments-item-create">
-        <input type="text" value={textComment} onChange={hendleInput} />
+        <input
+          id="inp"
+          type="text"
+          value={textComment}
+          onChange={hendleInput}
+        />
         <input type="submit" hidden />
       </form>
       {!!comments.length &&

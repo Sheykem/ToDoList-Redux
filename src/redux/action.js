@@ -1,8 +1,11 @@
+import { useDispatch } from "react-redux";
 import { COMMENT_DELATE, INCREMENT } from "./types";
 import { DECREMENT } from "./types";
 import { INPUT_TEXT } from "./types";
 import { COMMENT_CREATE } from "./types";
 import { COMMENT_UPDATA } from "./types";
+import { ERROR_DISPLAY_ON } from "./types";
+import { ERROR_DISPLAY_OFF } from "./types";
 // Экшены
 
 export const incrementLikes = () => {
